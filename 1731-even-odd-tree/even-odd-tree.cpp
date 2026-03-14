@@ -30,7 +30,6 @@ public:
         vector<vector<int>> v;
         treeToVec(root, 0, v);
         bool isEvenLayer = false;
-        int layer = 0;
 
         for (vector vec: v){
 
@@ -61,7 +60,6 @@ public:
                 prev = value;
             }
             isEvenLayer = !isEvenLayer;
-            layer++;
         }
         return true;
     }
