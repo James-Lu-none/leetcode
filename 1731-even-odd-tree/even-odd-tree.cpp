@@ -41,21 +41,21 @@ public:
                 prev = INT_MIN;
             }
             for (int value: vec){
-                printf("layer: %d, prev: %d, value: %d\n", layer, prev, value);
+                // printf("layer: %d, prev: %d, value: %d\n", layer, prev, value);
                 if (value % 2 == 0 && !isEvenLayer){
-                    printf("case1");
+                    // printf("case1");
                     return false;
                 }
                 if (value % 2 == 1 && isEvenLayer){
-                    printf("case2");
+                    // printf("case2");
                     return false;
                 }
                 if (prev <= value && !isEvenLayer){
-                    printf("case3");
+                    // printf("case3");
                     return false;
                 } 
                 if (prev >= value && isEvenLayer){
-                    printf("case4");
+                    // printf("case4");
                     return false;
                 }
                 prev = value;
