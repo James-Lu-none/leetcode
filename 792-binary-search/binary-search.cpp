@@ -1,9 +1,15 @@
 class Solution {
 public:
+    int recursiveSearch(vector<int>& nums, int target, int left, int right) {
+        if (right<left) return -1;
+        int mid = left + (right-left)/2;
+        if (nums[mid] == target) return mid;
+        return (nums[mid] < target)?recursiveSearch(nums, target, mid+1, right):recursiveSearch(nums, target, left, mid-1);
+    }
     int search(vector<int>& nums, int target) {
         int left = 0;
         int right = nums.size()-1;
-        
+        return recursiveSearch(nums, target, left, right);
         while (right>=left) {
             // pratically use left + (right - left) / 2; instead of (left + right)/2 to avoid overflow
             int mid = left + (right - left) / 2;
@@ -17,27 +23,4 @@ public:
         }
         return -1;
     }
-    // int search(vector<int>& nums, int target) {
-    //     int low = 0;
-    //     int high = nums.size()-1;
-    //     vector<int> sub_vector(nums);
-    //     while (true){
-    //         int n = sub_vector.size();
-    //         int mid = n/2 + low;
-    //         int mid_value = nums[mid];
-    //         // printf("before %d %d, %d, %d \n", n ,mid, low, high);
-    //         if (mid_value == target) {
-    //             return mid;
-    //         } else if (target < mid_value) {
-    //             high = mid-1;
-    //         } else {
-    //             low = mid+1;
-    //         }
-    //         if(high<0) return -1;
-    //         if(low>high) return -1;
-    //         // printf("after %d %d, %d, %d \n", n ,mid, low, high);
-    //         sub_vector = vector<int>(nums.begin()+low, nums.begin()+high);
-    //     }
-    //     return -1;
-    // }
 };
