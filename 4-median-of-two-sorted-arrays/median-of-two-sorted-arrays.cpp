@@ -32,7 +32,7 @@ public:
         int left = 0, right = n;
         int halfLen = (n + m + 1) / 2;
 
-        return recursive(nums1, nums2, left, right, halfLen, n, m);
+        // return recursive(nums1, nums2, left, right, halfLen, n, m);
 
         while (left <= right) {
             int i = left + (right - left) / 2;
