@@ -4,7 +4,8 @@ public:
         if (right<left) return -1;
         int mid = left + (right-left)/2;
         if (nums[mid] == target) return mid;
-        return (nums[mid] < target)?recursiveSearch(nums, target, mid+1, right):recursiveSearch(nums, target, left, mid-1);
+        if (nums[mid] < target) return recursiveSearch(nums, target, mid+1, right);
+        else return recursiveSearch(nums, target, left, mid-1);
     }
     int search(vector<int>& nums, int target) {
         int left = 0;
