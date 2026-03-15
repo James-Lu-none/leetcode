@@ -25,7 +25,8 @@ public:
                 } else {
                     return max(maxLeft1, maxLeft2);
                 }
-            } 
+            }
+            // binary search logic here
             else if (maxLeft1 > minRight2) {
                 right = i - 1;
             } 
