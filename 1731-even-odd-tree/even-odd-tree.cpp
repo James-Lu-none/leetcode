@@ -12,29 +12,23 @@
 
 class Solution {
 public:
-    bool treeToVec(TreeNode* root, int level, vector<vector<int>>& v) {
-        if (root == nullptr) return true;
+    vector<int> lastVal = {};
 
-        if (v.size()<=level) {
-            v.push_back({});
+    bool dfs(TreeNode* root, int level) {
+        if (!root) return true;
+        if (root->val % 2 == level % 2) return false;
+        if (lastVal.size() <= level) {
+            lastVal.push_back(root->val);
+        } else {
+            if (level % 2 == 0 && root->val <= lastVal[level]) return false;
+            if (level % 2 == 1 && root->val >= lastVal[level]) return false;
+            lastVal[level] = root->val;
         }
-        if (level % 2 == root->val % 2) return false;
-        if (v[level].size() > 0) {
-            if (level % 2 == 0 && v[level].back() >= root->val) return false;
-            if (level % 2 == 1 && v[level].back() <= root->val) return false;
-        }
-        v[level].push_back(root->val);
 
-        
-        bool a = treeToVec(root->left, level+1, v);
-        if (!a) return false;
-        bool b = treeToVec(root->right, level+1, v);
-        if (!b) return false;
-        return true;
+        return dfs(root->left, level + 1) && dfs(root->right, level + 1);
     }
+
     bool isEvenOddTree(TreeNode* root) {
-        // vector<TreeNode*> v;
-        vector<vector<int>> v;
-        return treeToVec(root, 0, v);
+        return dfs(root, 0);
     }
 };
