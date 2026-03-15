@@ -12,55 +12,29 @@
 
 class Solution {
 public:
-    void treeToVec(TreeNode* root, int level, vector<vector<int>>& v) {
-        if (root == nullptr) return;
+    bool treeToVec(TreeNode* root, int level, vector<vector<int>>& v) {
+        if (root == nullptr) return true;
 
         if (v.size()<=level) {
             v.push_back({});
         }
-
+        if (level % 2 == root->val % 2) return false;
+        if (v[level].size() > 0) {
+            if (level % 2 == 0 && v[level].back() >= root->val) return false;
+            if (level % 2 == 1 && v[level].back() <= root->val) return false;
+        }
         v[level].push_back(root->val);
+
         
-        treeToVec(root->right, level+1, v);
-        treeToVec(root->left, level+1, v);
-        return;
+        bool a = treeToVec(root->left, level+1, v);
+        if (!a) return false;
+        bool b = treeToVec(root->right, level+1, v);
+        if (!b) return false;
+        return true;
     }
     bool isEvenOddTree(TreeNode* root) {
         // vector<TreeNode*> v;
         vector<vector<int>> v;
-        treeToVec(root, 0, v);
-        bool isEvenLayer = false;
-
-        for (vector vec: v){
-
-            int prev;
-            if (!isEvenLayer){
-                prev = INT_MAX;
-            } else {
-                prev = INT_MIN;
-            }
-            for (int value: vec){
-                // printf("layer: %d, prev: %d, value: %d\n", layer, prev, value);
-                if (value % 2 == 0 && !isEvenLayer){
-                    // printf("case1");
-                    return false;
-                }
-                if (value % 2 == 1 && isEvenLayer){
-                    // printf("case2");
-                    return false;
-                }
-                if (prev <= value && !isEvenLayer){
-                    // printf("case3");
-                    return false;
-                } 
-                if (prev >= value && isEvenLayer){
-                    // printf("case4");
-                    return false;
-                }
-                prev = value;
-            }
-            isEvenLayer = !isEvenLayer;
-        }
-        return true;
+        return treeToVec(root, 0, v);
     }
 };
