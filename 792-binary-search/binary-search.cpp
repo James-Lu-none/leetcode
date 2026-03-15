@@ -10,6 +10,8 @@ public:
         int left = 0;
         int right = nums.size()-1;
         return recursiveSearch(nums, target, left, right);
+        
+        // loop only approach
         while (right>=left) {
             // pratically use left + (right - left) / 2; instead of (left + right)/2 to avoid overflow
             int mid = left + (right - left) / 2;
