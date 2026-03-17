@@ -10,7 +10,16 @@
  */
 class Solution {
 public:
+    ListNode* recursive(ListNode* head) {
+        if (head == nullptr || head->next == nullptr) return head;
+        ListNode* rest = recursive(head->next);
+        
+        head->next->next = head;
+        head->next = nullptr;
+        return rest;
+    }
     ListNode* reverseList(ListNode* head) {
+        return recursive(head);
         ListNode* curr = head;
         ListNode* prev = nullptr;
         while (curr) {
