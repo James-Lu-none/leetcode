@@ -19,7 +19,7 @@ public:
         return rest;
     }
     ListNode* reverseList(ListNode* head) {
-        return recursive(head);
+        // return recursive(head);
         ListNode* curr = head;
         ListNode* prev = nullptr;
         while (curr) {
