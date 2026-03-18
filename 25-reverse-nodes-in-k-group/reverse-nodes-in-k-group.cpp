@@ -39,14 +39,14 @@ public:
                 // prevGroupEnd is for group n-1
                 ListNode* newHead = reverseList(groupHead);
 
-                ListNode* test = newHead;
-                while (test) {
-                    printf("%d ",test->val);
-                    test = test->next;
-                }
-                printf("\n");
+                // ListNode* test = newHead;
+                // while (test) {
+                //     printf("%d ",test->val);
+                //     test = test->next;
+                // }
+                // printf("\n");
                 // printf("prevGroupEnd val: %d\n",prevGroupEnd->val);
-                printf("group n lastNode val: %d\n",groupHead->val);
+                // printf("group n lastNode val: %d\n",groupHead->val);
 
                 if (prevGroupEnd == nullptr) {
                     head = newHead;
