@@ -6,10 +6,11 @@ public:
         while (left<=right) {
             int mid = left + (right - left)/2;
             int midVal = nums[mid];
-            if (midVal >= target) {
-                right = mid-1;
+            // 如果目前找到的值大於等於要插入的值，那還是要在
+            if (midVal < target) {
+                left = mid+1;                
             } else {
-                left = mid+1;
+                right = mid-1;
             }
         }
         return left;
