@@ -22,20 +22,20 @@ public:
         seq.push_back(nums[0]);
         for (int i = 1; i<nums.size(); i++) {
             int n = nums[i];
-            printf("i= %d ", i);
+            // printf("i= %d ", i);
             if (n > seq.back()) {
                 seq.push_back(n);
-                printf("push largest value %d\n", n);
+                // printf("push largest value %d\n", n);
             } else {
                 int index = search(seq, n);
                 seq[index] = n;
-                printf("update %d at index: %d\n", n, index);
+                // printf("update %d at index: %d\n", n, index);
             }
         }
 
-        for (int n: seq) {
-            printf("%d ", n);
-        }
+        // for (int n: seq) {
+        //     printf("%d ", n);
+        // }
         return seq.size();
     }
 };
