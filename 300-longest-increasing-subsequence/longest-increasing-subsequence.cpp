@@ -6,13 +6,14 @@ public:
         while (left<=right) {
             int mid = left + (right - left)/2;
             int midVal = nums[mid];
-            // 如果目前找到的值大於等於要插入的值，那還是要在
             if (midVal < target) {
                 left = mid+1;                
             } else {
                 right = mid-1;
             }
         }
+        // 回傳最終midVal右邊的index(left=mid+1)
+        // left 最後會停在第一個大於或等於 target 的位置
         return left;
     }
     int lengthOfLIS(vector<int>& nums) {
