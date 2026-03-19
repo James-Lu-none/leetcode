@@ -5,15 +5,19 @@ public:
         int low = 0;
         int high = nums.size()-1;
         while (low <= high) {
-            int pivot = high;
-            int i=low;
+            // int pivot = high;
+            int pivotIndex = low + rand() % (high - low + 1);
+            swap(nums[pivotIndex], nums[high]);
+
+            int pivot = nums[high];
+            int i = low;
             for (int j=low;j<high;j++) {    
-                if (nums[j]<nums[pivot]){
+                if (nums[j]<pivot){
                     swap(nums[i], nums[j]);
                     i++;
                 }
             }
-            swap(nums[i], nums[pivot]);
+            swap(nums[i], nums[high]);
             if (i == nth_element) {
                 return nums[i];
             } else if (i > nth_element) {
@@ -24,7 +28,7 @@ public:
         }
         return -1;
     }
-    
+
     void wiggleSort(vector<int>& nums) {
         int n = nums.size();
         int mid = quickSelect(nums, n/2);
@@ -33,7 +37,7 @@ public:
         int low = 0;
         int i = 0;
         int high = n-1;
-        // use Dutch National Flag (3-way partitioning) // 跟mid比
+        // use Dutch National Flag (3-way partitioning) 
         #define A(i) nums[(1 + 2 * (i)) % (n | 1)]
         while (i <= high) {
             if (A(i)>mid) {
