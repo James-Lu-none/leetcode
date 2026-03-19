@@ -40,7 +40,7 @@ public:
             int j = R[i];
             // printf("checking pair (%d, %d) with sum %d... ", i, j, top.sum);
             if (j != -1 && !removed[i] && !removed[j] && (val[i] + val[j] == top.sum)) {
-                printf("valid pair\n");
+                // printf("valid pair\n");
                 if (L[i] != -1 && val[L[i]] > val[i]) unsorted_count--;
                 if (val[i] > val[j]) unsorted_count--;
                 if (R[j] != -1 && val[j] > val[R[j]]) unsorted_count--;
