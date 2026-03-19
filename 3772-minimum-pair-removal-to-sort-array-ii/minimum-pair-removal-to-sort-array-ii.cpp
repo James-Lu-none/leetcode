@@ -2,7 +2,8 @@ class Solution {
     struct Pair {
         int64_t sum;
         int left;
-
+        // add simple constructor
+        Pair(int64_t s, int l): sum(s), left(l) {}
         bool operator>(const Pair& other) const {
             if (sum != other.sum) return sum > other.sum;
             return left > other.left;
@@ -25,7 +26,8 @@ public:
             L[i] = i - 1;
             R[i] = i + 1;
             if (i < n - 1) {
-                pq.push({(int64_t) nums[i] + nums[i + 1], i});
+                // emplace() is preferred for objects to prevent temporary object
+                pq.emplace((int64_t) nums[i] + nums[i + 1], i);
                 if (nums[i] > nums[i + 1]) unsorted_count++;
             }
         }
@@ -55,8 +57,9 @@ public:
                 if (R[i] != -1 && val[i] > val[R[i]]) unsorted_count++;
 
                 ops++;
-                if (L[i] != -1) pq.push({val[L[i]] + val[i], L[i]});
-                if (R[i] != -1) pq.push({val[i] + val[R[i]], i});
+                // emplace() is preferred for objects to prevent temporary object
+                if (L[i] != -1) pq.emplace(val[L[i]] + val[i], L[i]);
+                if (R[i] != -1) pq.emplace(val[i] + val[R[i]], i);
             } else {
                 // printf("invalid pair\n");
             }
