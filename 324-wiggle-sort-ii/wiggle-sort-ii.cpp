@@ -28,12 +28,12 @@ public:
     void wiggleSort(vector<int>& nums) {
         int n = nums.size();
         int mid = quickSelect(nums, n/2);
-        printf("%d\n", mid);
+        // printf("%d\n", mid);
 
         int low = 0;
         int i = 0;
         int high = n-1;
-        // use Dutch National Flag (3-way partitioning)
+        // use Dutch National Flag (3-way partitioning) // 跟mid比
         #define A(i) nums[(1 + 2 * (i)) % (n | 1)]
         while (i <= high) {
             if (A(i)>mid) {
