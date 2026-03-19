@@ -5,19 +5,15 @@ public:
         int low = 0;
         int high = nums.size()-1;
         while (low <= high) {
-            // int pivot = high;
-            int pivotIndex = low + rand() % (high - low + 1);
-            swap(nums[pivotIndex], nums[high]);
-
-            int pivot = nums[high];
-            int i = low;
+            int pivot = high;
+            int i=low;
             for (int j=low;j<high;j++) {    
-                if (nums[j]<pivot){
+                if (nums[j]<nums[pivot]){
                     swap(nums[i], nums[j]);
                     i++;
                 }
             }
-            swap(nums[i], nums[high]);
+            swap(nums[i], nums[pivot]);
             if (i == nth_element) {
                 return nums[i];
             } else if (i > nth_element) {
@@ -31,8 +27,11 @@ public:
 
     void wiggleSort(vector<int>& nums) {
         int n = nums.size();
-        int mid = quickSelect(nums, n/2);
+        // int mid = quickSelect(nums, n/2);
         // printf("%d\n", mid);
+        auto midptr = nums.begin() + n / 2;
+        nth_element(nums.begin(), midptr, nums.end());
+        int mid = *midptr;
 
         int low = 0;
         int i = 0;
