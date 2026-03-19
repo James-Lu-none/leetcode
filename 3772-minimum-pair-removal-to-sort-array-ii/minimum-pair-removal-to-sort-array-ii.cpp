@@ -1,6 +1,3 @@
-auto _ = atexit([](){
-    ofstream("display_runtime.txt") << "0";
-});
 class Solution {
     struct Pair {
         int64_t sum;
