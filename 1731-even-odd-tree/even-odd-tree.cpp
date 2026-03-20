@@ -56,29 +56,49 @@ public:
     // }
 
     bool isEvenOddTree(TreeNode* root) {
-        // return dfs(root, 0); //runtime: 8ms, 43.76%, memory: 161MB, 14.66%
-        if (!root) return true;
+        if (root == nullptr) {
+            return true;
+        }
+
         queue<TreeNode*> q;
-        int level = 0;
         q.push(root);
-        while (q.size() != 0) {
-            int prev = (level % 2 == 0)?INT_MIN:INT_MAX;
-            for (int i=q.size();i--;){
+        int level = 0;
+
+        while (!q.empty()) {
+            int prev_val = (level % 2 == 0) ? INT_MIN : INT_MAX;
+            for (int n = q.size(); n--; ) {
                 TreeNode* node = q.front();
                 q.pop();
-                int val = node->val;
-                if (val % 2 == level % 2) return false;
-                if (level % 2) {
-                    if (val >= prev) return false;
-                } else {
-                    if (val <= prev) return false;
+
+                // Check parity
+                if (node->val % 2 == level % 2) {
+                    return false;
                 }
-                prev = val;
-                if (node->left != nullptr) q.push(node->left);
-                if (node->right != nullptr) q.push(node->right);
+                
+                // Check strict order
+                if (level % 2) {
+                    if (node->val >= prev_val) {
+                        return false;
+                    }
+                }
+                else {
+                    if (node->val <= prev_val) {
+                        return false;
+                    }
+                }
+                
+                prev_val = node->val;
+
+                if (node->left != nullptr) {
+                    q.push(node->left);
+                }
+                if (node->right != nullptr) {
+                    q.push(node->right);
+                }
             }
             level++;
         }
+
         return true;
     }
 };
