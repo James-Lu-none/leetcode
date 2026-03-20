@@ -56,49 +56,30 @@ public:
     // }
 
     bool isEvenOddTree(TreeNode* root) {
-        if (root == nullptr) {
-            return true;
-        }
-
+        if (!root) return true;
         queue<TreeNode*> q;
+        bool isOddLayer = true;
         q.push(root);
-        int level = 0;
-
-        while (!q.empty()) {
-            int prev_val = (level % 2 == 0) ? INT_MIN : INT_MAX;
-            for (int n = q.size(); n--; ) {
+        while (q.size() != 0) {
+            int size = q.size();
+            int prev = (isOddLayer)?INT_MIN:INT_MAX;
+            for (int i=0;i<size;i++){
                 TreeNode* node = q.front();
                 q.pop();
-
-                // Check parity
-                if (node->val % 2 == level % 2) {
-                    return false;
+                int val = node->val;
+                if (isOddLayer) {
+                    if (val % 2 == 0) return false;
+                    if (val <= prev) return false;
+                } else {
+                    if (val % 2 == 1) return false;
+                    if (val >= prev) return false;
                 }
-                
-                // Check strict order
-                if (level % 2) {
-                    if (node->val >= prev_val) {
-                        return false;
-                    }
-                }
-                else {
-                    if (node->val <= prev_val) {
-                        return false;
-                    }
-                }
-                
-                prev_val = node->val;
-
-                if (node->left != nullptr) {
-                    q.push(node->left);
-                }
-                if (node->right != nullptr) {
-                    q.push(node->right);
-                }
+                prev = val;
+                if (node->left != nullptr) q.push(node->left);
+                if (node->right != nullptr) q.push(node->right);
             }
-            level++;
+            isOddLayer = !isOddLayer;
         }
-
         return true;
     }
 };
