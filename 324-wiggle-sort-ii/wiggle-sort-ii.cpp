@@ -36,7 +36,7 @@ public:
         int low = 0;
         int i = 0;
         int high = n-1;
-        // use Dutch National Flag (3-way partitioning) 
+        // Dutch National Flag (3-way partitioning) with virtual indexing
         #define A(i) nums[(1 + 2 * (i)) % (n | 1)]
         while (i <= high) {
             if (A(i)>mid) {
@@ -50,8 +50,10 @@ public:
                 i++;
             }
         }
-        // while (low <= high) {
-        //     if (nums[low]>mid) {
+
+        // original Dutch National Flag (3-way partitioning) 
+        // while (i <= high) {
+        //     if (nums[i]>mid) {
         //         swap(nums[low], nums[i]);
         //         low++;
         //         i++;
