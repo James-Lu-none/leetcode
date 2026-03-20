@@ -63,7 +63,7 @@ public:
         q.push(root);
         while (q.size() != 0) {
             int prev = (isOddLayer)?INT_MIN:INT_MAX;
-            for (int i=q.size();i>0;i--){
+            for (int i=q.size();i--;){
                 TreeNode* node = q.front();
                 q.pop();
                 int val = node->val;
