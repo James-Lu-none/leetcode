@@ -59,26 +59,25 @@ public:
         // return dfs(root, 0); //runtime: 8ms, 43.76%, memory: 161MB, 14.66%
         if (!root) return true;
         queue<TreeNode*> q;
-        bool isOddLayer = true;
+        int level = 0;
         q.push(root);
         while (q.size() != 0) {
-            int prev = (isOddLayer)?INT_MIN:INT_MAX;
+            int prev = (level % 2 == 0)?INT_MIN:INT_MAX;
             for (int i=q.size();i--;){
                 TreeNode* node = q.front();
                 q.pop();
                 int val = node->val;
-                if (isOddLayer) {
-                    if (val % 2 == 0) return false;
-                    if (val <= prev) return false;
-                } else {
-                    if (val % 2 == 1) return false;
+                if (val % 2 == level % 2) return false;
+                if (level % 2) {
                     if (val >= prev) return false;
+                } else {
+                    if (val <= prev) return false;
                 }
                 prev = val;
                 if (node->left != nullptr) q.push(node->left);
                 if (node->right != nullptr) q.push(node->right);
             }
-            isOddLayer = !isOddLayer;
+            level++;
         }
         return true;
     }
