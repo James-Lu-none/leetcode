@@ -57,6 +57,30 @@ public:
 
     bool isEvenOddTree(TreeNode* root) {
         // return dfs(root, 0); //runtime: 8ms, 43.76%, memory: 161MB, 14.66%
-        return bfs(root);
+        if (!root) return true;
+        queue<TreeNode*> q;
+        bool isOddLayer = true;
+        q.push(root);
+        while (q.size() != 0) {
+            int size = q.size();
+            int prev = (isOddLayer)?INT_MIN:INT_MAX;
+            for (int i=0;i<size;i++){
+                TreeNode* node = q.front();
+                q.pop();
+                int val = node->val;
+                if (isOddLayer) {
+                    if (val % 2 == 0) return false;
+                    if (val <= prev) return false;
+                } else {
+                    if (val % 2 == 1) return false;
+                    if (val >= prev) return false;
+                }
+                prev = val;
+                if (node->left != nullptr) q.push(node->left);
+                if (node->right != nullptr) q.push(node->right);
+            }
+            isOddLayer = !isOddLayer;
+        }
+        return true;
     }
 };
