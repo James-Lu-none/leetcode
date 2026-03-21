@@ -1,12 +1,21 @@
 class Solution {
 public:
-    void mergeSort(vector<int>& nums, int left, int right) {
-        if (left >= right) return;
-        int mid = left + (right-left)/2;
-        mergeSort(nums, left, mid);
-        mergeSort(nums, mid+1, right);
+    void inPlaceMerge(vector<int> &nums, int low, int mid, int high) {
+        if (low >= high) return;
+        int l = low, r = mid + 1, k = 0, size = high - low + 1;
+        vector<int> sorted(size, 0);
+        while (l <= mid and r <= high) sorted[k++] = nums[l] < nums[r] ? nums[l++] : nums[r++];
+        while (l <= mid) sorted[k++] = nums[l++];
+        while (r <= high) sorted[k++] = nums[r++];
+        for (k = 0; k < size; k++) nums[k + low] = sorted[k];
+    }
+    void mergeSort(vector<int>& nums, int low, int high) {
+        if (low >= high) return;
+        int mid = low + (high-low)/2;
+        mergeSort(nums, low, mid);
+        mergeSort(nums, mid+1, high);
 
-        return inplace_merge(nums.begin()+left, nums.begin()+mid+1, nums.begin()+right+1);
+        return inPlaceMerge(nums, low, mid, high);
     }
     vector<int> sortArray(vector<int>& nums) {
         int n = nums.size();
