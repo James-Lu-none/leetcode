@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void inPlaceMerge(vector<int> &nums, int low, int mid, int high) {
+    void merge(vector<int> &nums, int low, int mid, int high) {
         if (low >= high) return;
         int l = low, r = mid + 1, k = 0, size = high - low + 1;
         vector<int> sorted(size, 0);
@@ -15,7 +15,7 @@ public:
         mergeSort(nums, low, mid);
         mergeSort(nums, mid+1, high);
 
-        return inPlaceMerge(nums, low, mid, high);
+        return merge(nums, low, mid, high);
     }
     vector<int> sortArray(vector<int>& nums) {
         int n = nums.size();
