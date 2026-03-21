@@ -26,12 +26,29 @@
 
 ## sorting algorithms
 
-1. quick sort
-2. heap sort
-3. insertion sort
-4. selection sort
-5. merge sort
-6. Dutch National Flag Problem (3-way partitioning)
+| Algorithm | Time Complexity (Average) | Time Complexity (Worst) | Space Complexity |
+|-----------|-----------------------------|-------------------------|------------------|
+| quick sort | O(n log n) | O(n^2) | O(log n) |
+| merge sort | O(n log n) | O(n log n) | O(n) |
+| time sort | O(n log n) | O(n log n) | O(1) |
+| heap sort | O(n log n) | O(n log n) | O(1) |
+| bubble sort | O(n^2) | O(n^2) | O(1) |
+| insertion sort | O(n^2) | O(n^2) | O(1) |
+| selection sort | O(n^2) | O(n^2) | O(1) |
+| tree sort | O(n log n) | O(n^2) | O(n) |
+| shell sort | O(n log n) | O(n^2) | O(1) |
+| bucket sort | O(n + k) | O(n^2) | O(n + k) |
+| Radix sort | O(d * n) | O(d * n) | O(n + k) |
+| counting sort | O(n + k) | O(n + k) | O(k) |
+| cube sort | O(n^(3/2)) | O(n^(3/2)) | O(1) |
+| merge sort | O(n log n) | O(n log n) | O(n) |
+
+# partitioning algorithms
+
+| Algorithm | Time Complexity | Space Complexity |
+|-----------|-----------------|------------------|
+| Dutch National Flag Problem (3-way partitioning) | O(n) | O(1) |
+
 
 ## searching algorithms
 
