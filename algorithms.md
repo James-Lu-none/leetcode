@@ -23,6 +23,7 @@
 8. skip list
 9. trie
 10. heap (min-heap, max-heap)
+11. Binary Indexed Tree (BIT) / Fenwick Tree
 
 ## sorting algorithms
 
@@ -56,3 +57,13 @@
 2. depth-first search (DFS)
 3. breadth-first search (BFS)
 4. fast and slow pointers (Floyd's Tortoise and Hare algorithm)
+
+## methods
+
+1. Inversion Pair 
+    - with merge sort: O(n log n)
+        step1: divide the array into two halves
+        step2: count the number of reverse pairs in the left half and right half recursively
+        step3: count the number of reverse pairs across the two halves (i.e., left[i] > right[j]) with two pointers
+        step4: merge the two halves together
+2. subarray iteration: O(n^2) with left right bounds -> O(n) with prefix sum
