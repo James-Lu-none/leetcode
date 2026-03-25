@@ -32,8 +32,7 @@ public:
             int midVal = mountainArr.get(mid);
             printf("left: %d, mid: %d, right: %d\n", left, mid, right);
             if (midVal == target) {
-                ans = mid;
-                break;
+                return mid;
             } else if (midVal > target) {
                 right = mid-1;
             } else {
@@ -49,8 +48,7 @@ public:
             int midVal = mountainArr.get(mid);
             printf("left: %d, mid: %d, right: %d\n", left, mid, right);
             if (midVal == target) {
-                ans = mid;
-                break;
+                return mid;
             } else if (midVal < target) {
                 right = mid-1;
             } else {
