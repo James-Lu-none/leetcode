@@ -1,6 +1,6 @@
 class Solution {
 public:
-    // O(n+m)
+    // staircase O(n+m)
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
         int rows = matrix.size();
         int cols = matrix[0].size();
