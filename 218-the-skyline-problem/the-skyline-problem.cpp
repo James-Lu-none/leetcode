@@ -39,9 +39,10 @@ public:
             }
 
             // get last (largest) element from multiset
-            auto heighestHeight = *pq.rbegin();
-            if (ongoingHeight != heighestHeight) {
-                ongoingHeight = heighestHeight;
+            auto highestHeight = *pq.rbegin();
+            // if highestHeight is different from ongoingHeight, then update ongoingHeight and add {currentPoint, ongoingHeight} to ans
+            if (ongoingHeight != highestHeight) {
+                ongoingHeight = highestHeight;
                 ans.push_back({currentPoint, ongoingHeight});
             }
         }
