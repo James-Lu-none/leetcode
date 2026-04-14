@@ -14,9 +14,6 @@ public:
             // we can confirm that last point in the dq has largest y-x here since we removes all the front points that is smaller
             if (!dq.empty()) {
                 int i = dq.back();
-                if (points[i][1]-points[i][0]+xj+yj>ans){
-                    printf("max at %d, %d\n", i, j);
-                }
                 ans = max(ans, points[i][1]-points[i][0]+xj+yj);
             }
 
@@ -28,7 +25,7 @@ public:
             // 2. when j=3, dq: front->[2]<-back, we can calculate the maximum safely with dq.back(), and get Max Value of Equation at j=3, i=2
             int currentVal = yj - xj;
             while (!dq.empty() && (points[dq.front()][1] - points[dq.front()][0]) <= currentVal) {
-                printf("pops: [%d, %d]\n",points[dq.front()][1], points[dq.front()][0]);
+                // printf("pops: [%d, %d]\n",points[dq.front()][1], points[dq.front()][0]);
                 dq.pop_front();
             }
 
