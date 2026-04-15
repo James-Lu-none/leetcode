@@ -20,6 +20,19 @@ public:
         m = board.size();
         n = board[0].size();
         
+        // Start from fewer occurrences to reduce branches
+        int firstCharCount = 0;
+        int lastCharCount = 0;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (board[i][j] == word[0]) firstCharCount++;
+                if (board[i][j] == word.back()) lastCharCount++;
+            }
+        }
+        if (lastCharCount < firstCharCount) {
+            reverse(word.begin(), word.end());
+        }
+
         for (int r=0;r<m;r++) {
             for (int c=0;c<n;c++) {
                 if (dfs(board, word, r, c, 0)){
