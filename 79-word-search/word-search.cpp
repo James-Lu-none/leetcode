@@ -3,8 +3,8 @@ public:
     int m;
     int n;
     bool dfs(vector<vector<char>>& board, string word, int r, int c, int i){
-        if (i == word.length()) return true;
         if (board[r][c]!=word[i]) return false;
+        if (i == word.length()-1) return true;
         char temp = board[r][c];
         board[r][c] = '.';
         bool top = false, down = false, left = false, right = false;
@@ -19,7 +19,6 @@ public:
     bool exist(vector<vector<char>>& board, string word) {
         m = board.size();
         n = board[0].size();
-        if(board[0][0] == word[0] && word.length() == 1) return true;
         
         for (int r=0;r<m;r++) {
             for (int c=0;c<n;c++) {
