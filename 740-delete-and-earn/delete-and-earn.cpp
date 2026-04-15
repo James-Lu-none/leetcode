@@ -23,7 +23,7 @@ public:
         //     rob[i] = max(rob[i-1], houses[i]+rob[i-2]);
         // }
         // return rob[m];
-
+        
         // only rob[i-2], rob[i-1] and rob[i] is needed
         // -> robi_2, robi_1, robi
         int robi_2 = houses[0];
