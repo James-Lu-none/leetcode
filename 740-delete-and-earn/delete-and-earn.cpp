@@ -16,10 +16,10 @@ public:
         // it will be assigned rob[i-1] if dont take house[i], and rob[i-2]+house[i] if takes house[i] (removing the effect of taking house[i-1]) 
         vector<int> rob(m+1);
 
-        for(int i=0; i<m+1; i++) {
-            printf("%d ",houses[i]);
-        }
-        printf("\n");
+        // for(int i=0; i<m+1; i++) {
+        //     printf("%d ",houses[i]);
+        // }
+        // printf("\n");
         rob[0] = houses[0];
         rob[1] = max(houses[0], houses[1]);
         for(int i=2; i<m+1; i++) {
