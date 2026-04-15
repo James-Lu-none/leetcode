@@ -159,3 +159,8 @@ The most efficient way is to use a segment tree, we can use a Segment Tree to do
     - 416. Partition Equal Subset Sum
     - 312. Burst Balloons
     - 1143. Longest Common Subsequence
+
+## additional notes
+
+1. When using loop binary search, the loop condition should be low <= high if we are using size - 1 as the upper bound, and low < high if we are using size as the upper bound
+2. When using recursive binary search, the base case should be low > high, if we use low >= high as the base case, we might miss the case when low == high, which is a valid case to check for the target value.
