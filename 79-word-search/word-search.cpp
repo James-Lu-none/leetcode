@@ -1,13 +1,13 @@
 class Solution {
 public:
-    int m;
-    int n;
     bool dfs(vector<vector<char>>& board, string word, int r, int c, int i){
         if (board[r][c]!=word[i]) return false;
         if (i == word.length()-1) return true;
         char temp = board[r][c];
         board[r][c] = '.';
         bool top = false, down = false, left = false, right = false;
+        int m = board.size();
+        int n = board[0].size();
         if(r-1>=0) top = dfs(board, word, r-1, c, i+1);
         if(r+1<m) down = dfs(board, word, r+1, c, i+1);
         if(c-1>=0) left = dfs(board, word, r, c-1, i+1);
@@ -17,8 +17,8 @@ public:
         return top || down || left || right;
     }
     bool exist(vector<vector<char>>& board, string word) {
-        m = board.size();
-        n = board[0].size();
+        int m = board.size();
+        int n = board[0].size();
         
         // Start from fewer occurrences to reduce branches
         int firstCharCount = 0;
