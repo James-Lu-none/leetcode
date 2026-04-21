@@ -8,12 +8,13 @@ public:
         while (far < nums.size() - 1) {
             int farthest = 0;
             // at here, [near, far] means all the possible steps i can be on after N jumps
-            // so we iterate all selection and choose the farest one
+            // so we iterate all selection and choose the farthest one
             for (int i = near; i <= far; i++) {
                 farthest = max(farthest, i + nums[i]);
             }
 
-            // if the farest we can go after adding next jump is not than previous 
+            // if the farest we can go after adding next jump is still not larger than just add the current step
+            // than we are stucked 
             if (!(farthest>far)) return false;
 
             // update next jump search range [near, far] 
