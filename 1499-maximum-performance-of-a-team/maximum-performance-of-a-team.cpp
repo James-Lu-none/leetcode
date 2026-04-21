@@ -9,7 +9,9 @@ public:
         sort(rbegin(ess), rend(ess));
         long sumOfSpeed = 0, result = 0;
         priority_queue <int, vector<int>, greater<int>> pq; //min heap
-        for(auto& [efficiency, speed]: ess){
+        for(auto it: ess){
+            int efficiency = it.first;
+            int speed = it.second;
             // add current one
             pq.emplace(speed);
             sumOfSpeed += speed;
