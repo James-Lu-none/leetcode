@@ -13,8 +13,8 @@ public:
                 farthest = max(farthest, i + nums[i]);
             }
 
-            // if the farest we can go after adding next jump is not greater than smaller than previous 
-            if (!(farthest>near)) return false;
+            // if the farest we can go after adding next jump is not than previous 
+            if (!(farthest>far)) return false;
 
             // update next jump search range [near, far] 
             // with [far+1 (end of previous search range), farthest (next farthest jump possible)]
