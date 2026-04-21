@@ -2,7 +2,7 @@ class Solution {
 public:
     // core fix minimum efficiency and find maximum speeds
     int maxPerformance(int n, vector<int>& speed, vector<int>& efficiency, int k) {
-        vector<pair<int, int>> ess(n);
+        vector<pair<int, int>> ess;
         for (int i = 0; i < n; ++i) ess.emplace_back(efficiency[i], speed[i]);
         // first sort engineers by {efficiency, speed}, so every time we pick
         // we wont get engineer with efficiency that is larger then before
