@@ -12,7 +12,8 @@ public:
         for(auto it: ess){
             int efficiency = it.first;
             int speed = it.second;
-            // add current one
+            // add current one, Each time we have a new engineer, though will reduce the efficency of the team,
+            // it may increment the sum of speed.
             pq.emplace(speed);
             sumOfSpeed += speed;
             // kick the one with slowest speed if reached max # of pick
