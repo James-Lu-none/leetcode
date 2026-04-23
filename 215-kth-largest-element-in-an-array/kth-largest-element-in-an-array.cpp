@@ -3,13 +3,6 @@ public:
     int findKthLargest(vector<int>& nums, int k) {
         return solve(nums, nums.size() - k + 1);
     }
-    void findMediums(vector<int>& nums, vector<int>& mediums){
-        for (int i=0; i<nums.size()-5; i+=5)
-        {
-            sort(nums.begin() + i, nums.begin() + i+5);
-            mediums.push_back(nums[i+2]);
-        }
-    }
     int solve(vector<int>& nums, int k) {
         if (nums.size() <= 5) {
             sort(nums.begin(), nums.end());
