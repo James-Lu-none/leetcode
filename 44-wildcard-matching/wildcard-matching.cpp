@@ -1,40 +1,62 @@
 class Solution {
 public:
-    bool isMatch(string s, string p) {
+    // two pointer with back tracking
+    // worst time complexity O(MN), average O(M+N)
+    // space complexity O(1)
+    bool isMatch(string s, string p) {    
         int m = s.length();
         int n = p.length();
         int i = 0;
         int j = 0;
         int lastMatchPos = -1;
+        // we only need to track the lastStarPos, since if last star can't match, then prior wont match neither
         int lastStarPos = -1;
+        // the worst case for using backtracking is still O(MN), but its average O(M+N) if i and j aren't 
+        // frequently backtracking
+        // example that i and j frequently backtracking, where p has * with similar but different pattern as s
+        // s: aaaaaaaaab (len=M)
+        // p: *aaaaac (len=N)
+        // at 1st iteration: lastStarPos = 0, j = 1, lastMatchPos = 0, i = 0, at this moment, * at lastStarPos matches 0 char
+        // at 2nd iteration: lastStarPos = 0, j = 2, i = 1
+        // at 3rd iteration: lastStarPos = 0, j = 3, i = 2
+        // at nth iteration: loop: lastStarPos = 0, j = N, i = N-1, 'c' doesn't match 'a', so back track
+        // => now let * at lastStarPos take 1 char, so lastMatchPos=1, i reset back to lastMatchPos=1, j reset back to lastStarPos+1=1 and  now
+        // this will repeat at M times so worst case is O(MN)
         while (i<m) {
             if (j < n && (s[i] == p[j] || p[j] == '?')){
                 i++;
                 j++;
             }
             else if (j < n && p[j] == '*'){
-                // every time when a star exist, add 
+                // update lastStarPos
                 lastStarPos = j;
                 j++;
+                // update lastMatchPos with i, and we dont add i here since * can match 0 char
+                // this is the starting point of back tracking
                 lastMatchPos = i;
             }
             else if (lastStarPos != -1){
+                // p[:i] doesn't match s[:j], try back tracking
+                // let lastStartPos's * match 1 more chars
                 j = lastStarPos + 1;
-                //
+                // backtrack i to lastMatchPos+1
                 lastMatchPos++;
                 i = lastMatchPos;
             }
             else {
                 // characters do not match
                 // current pattern p[j] is not star
-                // last patter pointer was not *
+                // there was no * to backtrack
                 return false;
             }
         }
         
         //check for remaining characters in pattern
         while (p[j] == '*' && j < n) j++;
-        return j == n;
+        
+        // ensure matching considers the entire pattern
+        if (j == n) return true;
+        else return false;
     }
 
     // solve with dynamic programming, space and time complexity is O(MxN) 
