@@ -16,7 +16,7 @@ public:
         // find whiteValue in range [M, n-1] to replace the value in bloack
         int whiteValue = n - 1;
         for (int b : blacklist) {
-            // we only need to map away black values in [0, M-1] to a white value in [M, n-1], since out
+            // we only need to map away black values in [0, M-1] to a white value in [M, n-1],
             // since our generated random number is in [0, M-1]
             if (b >= M) continue;
 
