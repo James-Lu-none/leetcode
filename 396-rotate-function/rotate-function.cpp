@@ -1,8 +1,14 @@
 class Solution {
 public:
     int maxRotateFunction(vector<int>& nums) {
-        int f = 0, n = nums.size();
-        int numSum = accumulate(nums.begin(), nums.end(), 0);
+        int n = nums.size();
+        int f = 0;
+        
+        int numSum = 0;
+        for (int num: nums) {
+            numSum += num; 
+        }
+        
         for (int i = 0; i < n; i++) {
             f += i * nums[i];
         }
