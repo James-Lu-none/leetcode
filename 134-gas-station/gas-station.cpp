@@ -13,7 +13,7 @@ public:
             if(tempTank < 0){
                 tempTank = 0;
                 startFrom = i + 1;
-                printf("start again from %d", startFrom);
+                // printf("start again from %d", startFrom);
             }
         }
         // we still have to check if total is positive
