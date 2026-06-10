@@ -11,7 +11,7 @@ public:
         for (int i=1; i<=target; i++) {
             // try every num in the nums array that can be the last num to reach i
             for (int num : nums) {
-                if (dp[i]>INT_MAX) continue; // prevent super large sum
+                if (dp[i]>INT_MAX) continue; // prevent overflow large sum
                 // if num can be the last num to reach i, then we can look up dp table
                 // and increase possible combination to i by dp[i-num], since i-num+num=i
                 if (i - num >= 0) {
