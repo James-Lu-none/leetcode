@@ -21,7 +21,7 @@ int divide(int dividend, int divisor) {
 
     // return value must reside in [−2^31, 2^31 − 1]
     // so we have to handle edge case where 
-    if (is_negative && quotient > INT_MAX) return INT_MIN;
-     
+    // if (is_negative && quotient > INT_MAX) return INT_MIN;
+
     return is_negative ? -(int)quotient : (int)quotient;
 }
