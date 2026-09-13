@@ -8,16 +8,17 @@
 // }
 
 int minFlips(int a, int b, int c){
-    int result = 0;
+    // int result = 0;
     int f0 = (a | b) ^ c;
     int f1 = (a & b & (~c));
-    while (f0>0) {
-        f0 = f0 & (f0-1);
-        result++;
-    }
-    while (f1>0) {
-        f1 = f1 & (f1-1);
-        result++;
-    }
-    return result;
+    return __builtin_popcount(f0) + __builtin_popcount(f1);
+    // while (f0>0) {
+    //     f0 = f0 & (f0-1);
+    //     result++;
+    // }
+    // while (f1>0) {
+    //     f1 = f1 & (f1-1);
+    //     result++;
+    // }
+    // return result;
 }
