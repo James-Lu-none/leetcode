@@ -1,28 +1,23 @@
 int divide(int dividend, int divisor) {
+    // 唯一會超出 32-bit signed int 範圍的情況
     if (dividend == INT_MIN && divisor == -1) return INT_MAX;
 
-    // 計算正負號
-    int negatives = 2;
-    if (dividend > 0) { negatives--; dividend = -dividend; }
-    if (divisor > 0)  { negatives--; divisor = -divisor; }
+    bool is_negative = (dividend < 0) ^ (divisor < 0);
 
-    int quotient = 0;
+    // 安全轉成 unsigned int 取絕對值
+    unsigned int a = (dividend < 0) ? -(unsigned int)dividend : (unsigned int)dividend;
+    unsigned int b = (divisor < 0)  ? -(unsigned int)divisor  : (unsigned int)divisor;
 
-    // 用負數比大小：dividend 越負，絕對值越大
-    // dividend <= divisor 代表 |dividend| >= |divisor|
-    while (dividend <= divisor) {
-        int value = divisor;
-        int power_of_two = -1;
+    unsigned int quotient = 0;
 
-        // 避免 value + value 溢位 (value >= -1073741824)
-        while (value >= -1073741824 && value + value >= dividend) {
-            value += value;
-            power_of_two += power_of_two;
+    // 32 位元無符號數，最多右移 31 位
+    for (int i = 31; i >= 0; i--) {
+        if ((a >> i) >= b) {
+            quotient += (1U << i);
+            a -= (b << i);
         }
-
-        dividend -= value;
-        quotient += power_of_two; // quotient 累積負數商
     }
 
-    return (negatives == 1) ? quotient : -quotient;
+    if (is_negative && quotient > INT_MAX) return INT_MIN;
+    else return is_negative ? -(int)quotient : (int)quotient;
 }
