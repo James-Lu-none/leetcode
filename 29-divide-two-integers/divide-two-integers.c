@@ -1,7 +1,7 @@
 int divide(int dividend, int divisor) {
     // 唯一會超出 32-bit signed int 範圍的情況
     if (dividend == INT_MIN && divisor == -1) return INT_MAX;
-    if (dividend == INT_MIN && divisor == 1) return INT_MIN;
+    // if (dividend == INT_MIN && divisor == 1) return INT_MIN;
 
     bool is_negative = (dividend < 0) ^ (divisor < 0);
 
@@ -20,8 +20,11 @@ int divide(int dividend, int divisor) {
     }
 
     // return value must reside in [−2^31, 2^31 − 1]
-    // so we have to handle edge case where 
+    // so originally we have to handle edge case where quotient is INT_MAX+1 when
+    // dividend = INT_MIN, and dividend = 1, since abs of INT_MIN in uint32_t is INT_MAX+1
+    // but we can just handle it on the entry point
     // if (is_negative && quotient > INT_MAX) return INT_MIN;
 
-    return is_negative ? -(int)quotient : (int)quotient;
+    // return is_negative ? -(int)quotient : (int)quotient;
+    return is_negative ? (int)(-quotient) : (int)quotient;
 }
