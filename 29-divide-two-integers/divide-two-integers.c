@@ -16,7 +16,7 @@ int divide(int dividend, int divisor) {
             result |= (long long)1<<i;
         }
     }
-   
+    
     if(q_is_negative) return -result;
     else if(result > INT_MAX) return INT_MAX;
     else return result;
