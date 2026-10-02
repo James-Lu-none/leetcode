@@ -1,40 +1,38 @@
 /**
  * Note: The returned array must be malloced, assume caller calls free().
  */
-
-int lefts = 0;
-int rights = 0;
-char* tempResult = NULL;
-void backtrack(int n, int start, int* returnSize, char*** results) {
-    if(start == 2*n) {
+void backtrack(int n, int start, int lefts, int rights, char* tempResult, int* returnSize, char*** results) {
+    if (start == 2 * n) {
         tempResult[start] = '\0';
-        *results = realloc(*results, sizeof(char*)*((*returnSize)+1));
-        (*results)[*returnSize] = malloc(sizeof(char)*(2*n+1));
+        
+        char** temp_results = realloc(*results, sizeof(char*) * ((*returnSize) + 1));
+        if (temp_results == NULL) {
+            return; 
+        }
+        *results = temp_results;
+        
+        (*results)[*returnSize] = malloc(sizeof(char) * (2 * n + 1));
         strcpy((*results)[*returnSize], tempResult);
         (*returnSize)++;
         return;
     }
 
-    // try add '('
-    if(lefts<n) { // only add '(' if number of '(' hasn't pass half
-        lefts++;
+    if (lefts < n) {
         tempResult[start] = '(';
-        backtrack(n, start+1, returnSize, results);
-        lefts--; // revert change
+        backtrack(n, start + 1, lefts + 1, rights, tempResult, returnSize, results);
     }
     
-    // try add ')'
-    if(rights<lefts) { // only add ')' if there's more '('
-        rights++;
+    if (rights < lefts) {
         tempResult[start] = ')';
-        backtrack(n, start+1, returnSize, results);
-        rights--; // revert change
+        backtrack(n, start + 1, lefts, rights + 1, tempResult, returnSize, results);
     }
 }
+
+
 char** generateParenthesis(int n, int* returnSize) {
     char** results = NULL;
     *returnSize = 0;
-    tempResult = malloc(sizeof(char)*(n*2+1));
-    backtrack(n, 0, returnSize, &results);
+    char* tempResult = malloc(sizeof(char)*(n*2+1));
+    backtrack(n, 0, 0, 0, tempResult, returnSize, &results);
     return results;
 }
