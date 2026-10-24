@@ -10,8 +10,7 @@ class Solution(object):
         result = 0
         for num in nums:
             sum += num
-            if sum-k in freq:
-                result += freq[sum-k]
+            result += freq.get(sum-k, 0)
             freq[sum] = freq.get(sum, 0) + 1
         return result
 
