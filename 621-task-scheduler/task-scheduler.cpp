@@ -42,7 +42,6 @@ public:
             max_freq = max(max_freq, freq[c-'A']);
         }
 
-        // 2. 計算有多少個任務同時達到了最大頻率
         int max_freq_count = 0;
         for (int i = 0; i < 26; i++) {
             if (freq[i] == max_freq) {
@@ -50,10 +49,10 @@ public:
             }
         }
 
-        // 3. 套用公式
+        // others * slots + remaining max freq counts
         int ans = (max_freq - 1) * (n + 1) + max_freq_count;
 
-        // 4. 如果任務太多把空位撐爆了，答案就是任務總數
+        // tasks might perfectly use all slots in all cycles
         return max((int)tasks.size(), ans);
     }
 };
